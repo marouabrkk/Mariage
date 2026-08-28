@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livre d'Or — Notre Mariage</title>
+    
+    <!-- Polices élégantes de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Icônes élégantes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==========================================
+           PALETTE DE COULEURS ET VARIABLES DE STYLE
+           ========================================== */
+        :root {
+            --bg-body: #FAF7F2;          /* Blanc chaud / Crème */
+            --bg-card: #FFFFFF;          /* Blanc pur */
+            --bg-subtle: #F4EBE1;        /* Beige doux */
+            --gold-accent: #C5A880;      /* Or champagne doux */
+            --gold-hover: #AF8F63;       /* Or un peu plus soutenu */
+            --text-main: #2D2926;        /* Anthracite doux et lisible */
+            --text-muted: #7E7770;       /* Taupe élégant */
+            --border-color: #E8DFD5;     /* Bordure subtile */
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.04);
+            --shadow-hover: 0 15px 35px rgba(197, 168, 128, 0.15);
+            --radius-card: 16px;
+            --radius-btn: 50px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        h1, h2, h3, .serif-font {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ==========================================
+           EN-TÊTE / HERO BANNER
+           ========================================== */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 50px;
+            background: radial-gradient(circle at center, #FFFFFF 0%, var(--bg-body) 100%);
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .hero::after {
+            content: "❦";
+            display: block;
+            font-size: 24px;
+            color: var(--gold-accent);
+            margin-top: 15px;
+        }
+
+        .hero-subtitle {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gold-accent);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+
+        .hero-date {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* ==========================================
+           FORMULAIRE DU LIVRE D'OR
+           ========================================== */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-card);
+            padding: 40px;
+            box-shadow: var(--shadow-soft);
+            margin-top: -30px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .card-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .card-desc {
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            background-color: #FAF9F6;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: var(--gold-accent);
+            background-color: #FFFFFF;
+            box-shadow: 0 0 0 3px rgba(197, 168, 128, 0.15);
+        }
+
+        /* Médias : Photo & Audio */
+        .media-actions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 600px) {
+            .media-actions-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .card {
+                padding: 25px;
+            }
+        }
+
+        .media-box {
+            background-color: var(--bg-subtle);
+            border: 1px dashed var(--gold-accent);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .media-box:hover {
+            background-color: #EDE3D6;
+        }
+
+        .media-box i {
+            font-size: 24px;
+            color: var(--gold-accent);
+            margin-bottom: 8px;
+        }
+
+        .media-box span {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        /* Aperçu d'image */
+        #photoPreviewContainer {
+            display: none;
+            position: relative;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        #photoPreview {
+            max-height: 200px;
+            max-width: 100%;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .remove-btn {
+            position: absolute;
+            top: 5px;
+            right: calc(50% - 90px);
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 26px;
+            height: 26px;
+            cursor: pointer;
+        }
+
+        /* Enregistreur vocal */
+        .voice-controls {
+            display: none;
+            margin-top: 15px;
+            text-align: center;
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .record-btn {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--radius-btn);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s ease;
+        }
+
+        .record-btn.recording {
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        #audioPreview {
+            margin-top: 10px;
+            width: 100%;
+            height: 40px;
+            display: none;
+        }
+
+        /* Bouton Envoyer */
+        .btn-submit {
+            width: 100%;
+            background-color: var(--gold-accent);
+            color: #FFFFFF;
+            border: none;
+            padding: 16px;
+            border-radius: var(--radius-btn);
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(197, 168, 128, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--gold-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* ==========================================
+           SECTION DES MESSAGES REÇUS (MUR DE SOUVENIRS)
+           ========================================== */
+        .memories-section {
+            margin-top: 60px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--text-main);
+        }
+
+        .messages-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .message-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-card);
+            padding: 30px;
+            box-shadow: var(--shadow-soft);
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+        }
+
+        .guest-name {
+            font-size: 1.3rem;
+            color: var(--text-main);
+        }
+
+        .message-date {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .message-body {
+            font-size: 0.95rem;
+            color: #4A443F;
+            white-space: pre-line;
+            margin-bottom: 15px;
+        }
+
+        .memory-photo {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .memory-audio {
+            width: 100%;
+            margin-top: 15px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SECTION EN-TÊTE (Personnalisez ici) -->
+    <header class="hero">
+        <div class="container">
+            <p class="hero-subtitle">Bienvenue sur notre Livre d'Or</p>
+            <!-- Changez les prénoms ci-dessous -->
+            <h1 class="hero-title">Élodie & Thomas</h1>
+            <!-- Changez la date ci-dessous -->
+            <p class="hero-date">12 Juillet 2026 — Château des Roses</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- FORMULAIRE POUR ÉCRIRE UN SOUVENIR -->
+        <section class="card">
+            <h2 class="card-title">Laissez-nous un Souvenir</h2>
+            <p class="card-desc">Un petit mot, une photo de la fête ou un message vocal doux pour l'éternité.</p>
+
+            <form id="weddingForm">
+                <div class="form-group">
+                    <label for="guestName">VOTRE PRÉNOM & NOM</label>
+                    <input type="text" id="guestName" placeholder="Ex: Sarah & Alexandre" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="guestMessage">VOTRE MESSAGE DE VŒUX</label>
+                    <textarea id="guestMessage" rows="4" placeholder="Écrivez vos vœux pour les mariés..." required></textarea>
+                </div>
+
+                <!-- Grille d'actions multimédias -->
+                <div class="media-actions-grid">
+                    <!-- Bouton Photo -->
+                    <div class="media-box" onclick="document.getElementById('photoInput').click()">
+                        <i class="fa-solid fa-camera-retro"></i>
+                        <span>Ajouter une photo</span>
+                        <input type="file" id="photoInput" accept="image/*" style="display: none;">
+                    </div>
+
+                    <!-- Bouton Audio -->
+                    <div class="media-box" id="showVoiceControlsBtn">
+                        <i class="fa-solid fa-microphone-lines"></i>
+                        <span id="voiceBoxText">Enregistrer un mémo vocal</span>
+                    </div>
+                </div>
+
+                <!-- Zone d'aperçu de la photo -->
+                <div id="photoPreviewContainer">
+                    <img id="photoPreview" src="" alt="Aperçu">
+                    <button type="button" class="remove-btn" onclick="clearPhoto()">✕</button>
+                </div>
+
+                <!-- Zone de l'enregistreur vocal -->
+                <div class="voice-controls" id="voiceControls">
+                    <button type="button" class="record-btn" id="recordBtn">
+                        <i class="fa-solid fa-microphone"></i> <span id="recordBtnText">Commencer l'enregistrement</span>
+                    </button>
+                    <div id="recordTimer" style="font-size: 0.85rem; color: #777; margin-top: 8px; display: none;">00:00</div>
+                    <audio id="audioPreview" controls></audio>
+                </div>
+
+                <div style="margin-top: 25px;">
+                    <button type="submit" class="btn-submit">
+                        <i class="fa-regular fa-paper-plane" style="margin-right: 8px;"></i> Envoyer notre souvenir
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- SECTION D'AFFICHAGE DES SOUVENIRS -->
+        <section class="memories-section">
+            <div class="section-header">
+                <h2 class="section-title">Les Mots du Cœur</h2>
+                <p style="color: var(--text-muted); font-size: 0.95rem;">Tous vos précieux souvenirs partagés ensemble</p>
+            </div>
+
+            <div class="messages-list" id="messagesList">
+                <!-- Les messages envoyés s'afficheront ici en direct -->
+            </div>
+        </section>
+    </main>
+
+    <!-- ==========================================
+         JAVASCRIPT : TOUTE L'INTERACTIVITÉ
+         ========================================== -->
+    <script>
+        // Variables globales pour stocker les fichiers médias
+        let currentPhotoBase64 = null;
+        let currentAudioBase64 = null;
+        let mediaRecorder;
+        let audioChunks = [];
+        let isRecording = false;
+        let timerInterval;
+        let secondsElapsed = 0;
+
+        // 1. GESTION DES PHOTOS
+        const photoInput = document.getElementById('photoInput');
+        const photoPreview = document.getElementById('photoPreview');
+        const photoPreviewContainer = document.getElementById('photoPreviewContainer');
+
+        photoInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    currentPhotoBase64 = event.target.result;
+                    photoPreview.src = currentPhotoBase64;
+                    photoPreviewContainer.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function clearPhoto() {
+            currentPhotoBase64 = null;
+            photoInput.value = "";
+            photoPreviewContainer.style.display = 'none';
+        }
+
+        // 2. GESTION DE L'ENREGISTREMENT VOCAL
+        const showVoiceControlsBtn = document.getElementById('showVoiceControlsBtn');
+        const voiceControls = document.getElementById('voiceControls');
+        const recordBtn = document.getElementById('recordBtn');
+        const recordBtnText = document.getElementById('recordBtnText');
+        const recordTimer = document.getElementById('recordTimer');
+        const audioPreview = document.getElementById('audioPreview');
+
+        showVoiceControlsBtn.addEventListener('click', () => {
+            voiceControls.style.display = voiceControls.style.display === 'block' ? 'none' : 'block';
+        });
+
+        recordBtn.addEventListener('click', async () => {
+            if (!isRecording) {
+                // Démarrer l'enregistrement
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                    mediaRecorder = new MediaRecorder(stream);
+                    audioChunks = [];
+
+                    mediaRecorder.ondataavailable = (event) => {
+                        audioChunks.push(event.data);
+                    };
+
+                    mediaRecorder.onstop = () => {
+                        const audioBlob = new Blob(audioChunks, { type: 'audio/mp3' });
+                        const reader = new FileReader();
+                        reader.readAsDataURL(audioBlob);
+                        reader.onloadend = () => {
+                            currentAudioBase64 = reader.result;
+                            audioPreview.src = currentAudioBase64;
+                            audioPreview.style.display = 'block';
+                        };
+                    };
+
+                    mediaRecorder.start();
+                    isRecording = true;
+                    recordBtn.classList.add('recording');
+                    recordBtnText.textContent = "Arrêter l'enregistrement";
+                    recordTimer.style.display = 'block';
+                    secondsElapsed = 0;
+                    timerInterval = setInterval(() => {
+                        secondsElapsed++;
+                        const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+                        const secs = String(secondsElapsed % 60).padStart(2, '0');
+                        recordTimer.textContent = `${mins}:${secs}`;
+                    }, 1000);
+
+                } catch (err) {
+                    alert("Impossible d'accéder au micro. Veuillez autoriser l'accès au micro dans votre navigateur.");
+                }
+            } else {
+                // Stopper l'enregistrement
+                mediaRecorder.stop();
+                isRecording = false;
+                recordBtn.classList.remove('recording');
+                recordBtnText.textContent = "Recommencer l'enregistrement";
+                clearInterval(timerInterval);
+            }
+        });
+
+        // 3. SAUVEGARDE ET AFFICHAGE DANS LE LIVRE D'OR
+        const weddingForm = document.getElementById('weddingForm');
+        const messagesList = document.getElementById('messagesList');
+
+        // Charger les messages existants au démarrage
+        document.addEventListener('DOMContentLoaded', loadMessages);
+
+        weddingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('guestName').value.trim();
+            const message = document.getElementById('guestMessage').value.trim();
+            const date = new Date().toLocaleDateString('fr-FR', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
+            const newEntry = {
+                id: Date.now(),
+                name: name,
+                message: message,
+                photo: currentPhotoBase64,
+                audio: currentAudioBase64,
+                date: date
+            };
+
+            // Sauvegarder dans la mémoire locale (localStorage)
+            saveMessage(newEntry);
+
+            // Ajouter à l'écran
+            renderMessage(newEntry, true);
+
+            // Réinitialiser le formulaire
+            weddingForm.reset();
+            clearPhoto();
+            currentAudioBase64 = null;
+            audioPreview.style.display = 'none';
+            voiceControls.style.display = 'none';
+            recordBtnText.textContent = "Commencer l'enregistrement";
+            recordTimer.style.display = 'none';
+
+            alert("Merci infiniment pour votre message et vos vœux ! ✨");
+        });
+
+        function saveMessage(entry) {
+            let memories = JSON.parse(localStorage.getItem('wedding_memories')) || [];
+            memories.unshift(entry); // Le plus récent au début
+            localStorage.setItem('wedding_memories', JSON.stringify(memories));
+        }
+
+        function loadMessages() {
+            let memories = JSON.parse(localStorage.getItem('wedding_memories')) || [];
+            
+            // Si c'est la première visite et qu'il n'y a aucun message, on met un bel exemple
+            if (memories.length === 0) {
+                memories = [{
+                    id: 1,
+                    name: "Clara & Julien (Témoins)",
+                    message: "Un immense bonheur d'être à vos côtés pour célébrer cet amour magnifique. Vive les mariés !",
+                    photo: null,
+                    audio: null,
+                    date: "Aujourd'hui"
+                }];
+            }
+
+            messagesList.innerHTML = '';
+            memories.forEach(entry => renderMessage(entry, false));
+        }
+
+        function renderMessage(entry, prepend = false) {
+            const card = document.createElement('div');
+            card.className = 'message-card';
+
+            let photoHTML = entry.photo ? `<img src="${entry.photo}" class="memory-photo" alt="Souvenir photo">` : '';
+            let audioHTML = entry.audio ? `<audio controls src="${entry.audio}" class="memory-audio"></audio>` : '';
+
+            card.innerHTML = `
+                <div class="message-header">
+                    <h3 class="guest-name serif-font">${escapeHTML(entry.name)}</h3>
+                    <span class="message-date">${entry.date}</span>
+                </div>
+                <p class="message-body">${escapeHTML(entry.message)}</p>
+                ${photoHTML}
+                ${audioHTML}
+            `;
+
+            if (prepend) {
+                messagesList.prepend(card);
+            } else {
+                messagesList.appendChild(card);
+            }
+        }
+
+        // Sécurité pour éviter que du texte étrange ne casse l'affichage
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    "'": '&#39;',
+                    '"': '&quot;'
+                }[tag] || tag)
+            );
+        }
+    </script>
+</body>
+</html>
