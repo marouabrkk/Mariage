@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Livre d'Or — Khadija & Raouf</title>
     
-    <!-- Polices élégantes Google Fonts -->
+    <!-- Polices Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -14,9 +14,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* ==========================================
-           PALETTE DE COULEURS ET VARIABLES DE STYLE
-           ========================================== */
         :root {
             --bg-body: #FAF7F2;
             --bg-card: #FFFFFF;
@@ -62,9 +59,7 @@
             z-index: 2;
         }
 
-        /* ==========================================
-           ANIMATION : PÉTALES DE FLEURS BLANCHES
-           ========================================== */
+        /* ANIMATION : PÉTALES DE FLEURS BLANCHES */
         .petals-container {
             position: fixed;
             top: 0;
@@ -98,9 +93,7 @@
             100% { margin-left: 0px; }
         }
 
-        /* ==========================================
-           EN-TÊTE & MESSAGE D'AMOUR DES MARIÉS
-           ========================================== */
+        /* EN-TÊTE & MOT D'AMOUR */
         .hero {
             text-align: center;
             padding: 70px 20px 40px;
@@ -133,9 +126,8 @@
             margin-bottom: 25px;
         }
 
-        /* Boîte du mot d'amour des mariés */
         .couple-love-note {
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.85);
             border: 1px solid var(--border-color);
             padding: 22px 30px;
             border-radius: 14px;
@@ -161,9 +153,7 @@
             font-weight: 600;
         }
 
-        /* ==========================================
-           FORMULAIRE DU LIVRE D'OR
-           ========================================== */
+        /* FORMULAIRE */
         .card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -341,9 +331,20 @@
             box-shadow: var(--shadow-hover);
         }
 
-        /* ==========================================
-           SECTION DES MESSAGES APPROUVÉS
-           ========================================== */
+        /* Message de confirmation discret */
+        #successBanner {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        /* SECTION DES MESSAGES APPROUVÉS */
         .memories-section {
             margin-top: 60px;
         }
@@ -417,9 +418,7 @@
             height: 40px;
         }
 
-        /* ==========================================
-           ESPACE SECRET DE MODÉRATION (POPUP)
-           ========================================== */
+        /* ESPACE SECRET DE MODÉRATION */
         #adminOverlay {
             display: none;
             position: fixed;
@@ -501,17 +500,16 @@
 </head>
 <body>
 
-    <!-- CONTENEUR ANIMATION FLEURS BLANCHES -->
+    <!-- ANIMATION PÉTALES -->
     <div class="petals-container" id="petalsContainer"></div>
 
-    <!-- EN-TÊTE AVEC MOT D'AMOUR DES MARIÉS -->
+    <!-- EN-TÊTE -->
     <header class="hero">
         <div class="container">
             <p class="hero-subtitle">Bienvenue sur notre Livre d'Or</p>
             <h1 class="hero-title">Khadija & Raouf</h1>
             <p class="hero-date">Notre Mariage — Pour l'Éternité</p>
 
-            <!-- PETIT MESSAGE D'AMOUR DE KHADIJA & RAOUF -->
             <div class="couple-love-note">
                 <p>« Deux cœurs unis sous la même étoile... Merci infiniment d’être avec nous pour partager le plus beau chapitre de notre vie. »</p>
                 <span class="couple-signature">— Khadija & Raouf ♡</span>
@@ -520,10 +518,14 @@
     </header>
 
     <main class="container">
-        <!-- FORMULAIRE POUR ÉCRIRE UN SOUVENIR -->
+        <!-- FORMULAIRE -->
         <section class="card">
             <h2 class="card-title">Laissez-nous un Souvenir</h2>
             <p class="card-desc">Un petit mot doux, une jolie photo ou un mémo vocal pour réchauffer nos cœurs.</p>
+
+            <div id="successBanner">
+                <i class="fa-solid fa-circle-check"></i> Merci ! ✨ Votre message a bien été envoyé.
+            </div>
 
             <form id="weddingForm">
                 <div class="form-group">
@@ -536,7 +538,6 @@
                     <textarea id="guestMessage" rows="4" placeholder="Écrivez vos vœux pour Khadija & Raouf..." required></textarea>
                 </div>
 
-                <!-- Grille d'actions multimédias -->
                 <div class="media-actions-grid">
                     <div class="media-box" onclick="document.getElementById('photoInput').click()">
                         <i class="fa-solid fa-camera-retro"></i>
@@ -550,13 +551,11 @@
                     </div>
                 </div>
 
-                <!-- Aperçu photo -->
                 <div id="photoPreviewContainer">
                     <img id="photoPreview" src="" alt="Aperçu">
                     <button type="button" class="remove-btn" onclick="clearPhoto()">✕</button>
                 </div>
 
-                <!-- Enregistreur vocal -->
                 <div class="voice-controls" id="voiceControls">
                     <button type="button" class="record-btn" id="recordBtn">
                         <i class="fa-solid fa-microphone"></i> <span id="recordBtnText">Commencer l'enregistrement</span>
@@ -566,34 +565,29 @@
                 </div>
 
                 <div style="margin-top: 25px;">
-                    <button type="submit" class="btn-submit">
+                    <button type="submit" class="btn-submit" id="submitBtn">
                         <i class="fa-regular fa-paper-plane" style="margin-right: 8px;"></i> Envoyer notre souvenir
                     </button>
                 </div>
             </form>
         </section>
 
-        <!-- SECTION D'AFFICHAGE DES SOUVENIRS -->
+        <!-- SOUVENIRS VISIBLES -->
         <section class="memories-section">
             <div class="section-header">
                 <h2 class="section-title">Les Mots du Cœur</h2>
                 <p style="color: var(--text-muted); font-size: 0.95rem;">Tous vos précieux messages partagés avec amour</p>
             </div>
 
-            <div class="messages-list" id="messagesList">
-                <!-- Les messages approuvés apparaîtront ici -->
-            </div>
+            <div class="messages-list" id="messagesList"></div>
         </section>
     </main>
 
-    <!-- ==========================================
-         ESPACE SECRET INVISIBLE (SEULEMENT PAR LIEN)
-         ========================================== -->
+    <!-- ESPACE SECRET D'ADMINISTRATION -->
     <div id="adminOverlay">
         <div class="admin-modal">
             <button class="close-admin" onclick="closeAdmin()">&times;</button>
             
-            <!-- Écran de connexion des mariés -->
             <div id="adminLoginForm">
                 <h2 class="serif-font" style="font-size: 2.2rem; text-align: center; margin-bottom: 10px;">Espace Privé des Mariés</h2>
                 <p style="text-align: center; color: var(--text-muted); margin-bottom: 25px;">Connectez-vous pour voir et approuver les vœux de vos invités.</p>
@@ -611,59 +605,43 @@
                 <button class="btn-submit" onclick="handleAdminLogin()">Accéder aux Messages</button>
             </div>
 
-            <!-- Écran de gestion / modération -->
             <div id="adminDashboard" style="display: none;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                     <h2 class="serif-font" style="font-size: 2rem;">Gestion des Messages</h2>
                     <button onclick="adminLogout()" style="background: none; border: 1px solid var(--border-color); padding: 6px 14px; border-radius: 20px; cursor: pointer;">Déconnexion</button>
                 </div>
 
-                <div id="adminMessagesList" style="display: flex; flex-direction: column; gap: 20px;">
-                    <!-- Liste des messages -->
-                </div>
+                <div id="adminMessagesList" style="display: flex; flex-direction: column; gap: 20px;"></div>
             </div>
         </div>
     </div>
 
-    <!-- ==========================================
-         JAVASCRIPT
-         ========================================== -->
     <script>
-        /* ========================================================
-           1. VOS IDENTIFIANTS SECRETS (Khadija & Raouf)
-           ======================================================== */
+        /* 1. IDENTIFIANTS DES MARIÉS */
         const MARIES_GMAIL = "khadija.raouf@gmail.com";
-        const MARIES_PASSWORD = "mariage2026"; // Vous pouvez le modifier ici
+        const MARIES_PASSWORD = "mariage2026";
 
-        /* ========================================================
-           2. ANIMATION PÉTALES DE FLEURS BLANCHES
-           ======================================================== */
+        /* 2. PLUIE DE PÉTALES BLANCS */
         function createPetals() {
             const container = document.getElementById('petalsContainer');
-            const petalCount = 28;
-
+            const petalCount = 25;
             for (let i = 0; i < petalCount; i++) {
                 const petal = document.createElement('div');
                 petal.classList.add('petal');
-                
                 const size = Math.random() * 14 + 10;
                 petal.style.width = `${size}px`;
                 petal.style.height = `${size * 1.3}px`;
                 petal.style.left = `${Math.random() * 100}vw`;
-                
                 const duration = Math.random() * 6 + 6;
                 const delay = Math.random() * 8;
                 petal.style.animationDuration = `${duration}s, ${duration / 2}s`;
                 petal.style.animationDelay = `${delay}s, ${delay}s`;
-                
                 container.appendChild(petal);
             }
         }
         createPetals();
 
-        /* ========================================================
-           3. GESTION DES PHOTOS ET DU MICRO
-           ======================================================== */
+        /* 3. GESTION DES PHOTOS AVEC COMPRESSION AUTOMATIQUE (Anti-bug de taille) */
         let currentPhotoBase64 = null;
         let currentAudioBase64 = null;
         let mediaRecorder;
@@ -678,15 +656,41 @@
 
         photoInput.addEventListener('change', function(e) {
             const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    currentPhotoBase64 = event.target.result;
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const img = new Image();
+                img.onload = function() {
+                    // Redimensionnement de sécurité max 800px pour ne jamais dépasser la mémoire
+                    const canvas = document.createElement('canvas');
+                    let width = img.width;
+                    let height = img.height;
+                    const maxDim = 800;
+
+                    if (width > maxDim || height > maxDim) {
+                        if (width > height) {
+                            height = Math.round((height * maxDim) / width);
+                            width = maxDim;
+                        } else {
+                            width = Math.round((width * maxDim) / height);
+                            height = maxDim;
+                        }
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    // Compression JPEG légère
+                    currentPhotoBase64 = canvas.toDataURL('image/jpeg', 0.65);
                     photoPreview.src = currentPhotoBase64;
                     photoPreviewContainer.style.display = 'block';
                 };
-                reader.readAsDataURL(file);
-            }
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
         });
 
         function clearPhoto() {
@@ -695,6 +699,7 @@
             photoPreviewContainer.style.display = 'none';
         }
 
+        /* 4. ENREGISTREUR VOCAL */
         const showVoiceControlsBtn = document.getElementById('showVoiceControlsBtn');
         const voiceControls = document.getElementById('voiceControls');
         const recordBtn = document.getElementById('recordBtn');
@@ -740,7 +745,7 @@
                     }, 1000);
 
                 } catch (err) {
-                    alert("Micro indisponible ou refusé.");
+                    alert("Microphone inaccessible.");
                 }
             } else {
                 mediaRecorder.stop();
@@ -751,11 +756,10 @@
             }
         });
 
-        /* ========================================================
-           4. SOUMISSION (RÉPONSE "MERCI !" SIMPLE)
-           ======================================================== */
+        /* 5. ENVOI SÉCURISÉ DU MESSAGE */
         const weddingForm = document.getElementById('weddingForm');
         const messagesList = document.getElementById('messagesList');
+        const successBanner = document.getElementById('successBanner');
 
         document.addEventListener('DOMContentLoaded', () => {
             checkSecretHash();
@@ -765,30 +769,47 @@
         weddingForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
+            const guestName = document.getElementById('guestName').value.trim();
+            const guestMessage = document.getElementById('guestMessage').value.trim();
+
+            if (!guestName || !guestMessage) {
+                alert("Veuillez remplir votre nom et votre message.");
+                return;
+            }
+
             const newEntry = {
                 id: Date.now(),
-                name: document.getElementById('guestName').value.trim(),
-                message: document.getElementById('guestMessage').value.trim(),
+                name: guestName,
+                message: guestMessage,
                 photo: currentPhotoBase64,
                 audio: currentAudioBase64,
                 date: new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
-                approved: false // En attente discrète d'approbation
+                approved: false // En attente d'approbation par Khadija & Raouf
             };
 
-            let memories = JSON.parse(localStorage.getItem('khadija_raouf_memories')) || [];
-            memories.unshift(newEntry);
-            localStorage.setItem('khadija_raouf_memories', JSON.stringify(memories));
+            try {
+                let memories = JSON.parse(localStorage.getItem('khadija_raouf_memories')) || [];
+                memories.unshift(newEntry);
+                localStorage.setItem('khadija_raouf_memories', JSON.stringify(memories));
 
-            weddingForm.reset();
-            clearPhoto();
-            currentAudioBase64 = null;
-            audioPreview.style.display = 'none';
-            voiceControls.style.display = 'none';
-            recordBtnText.textContent = "Commencer l'enregistrement";
-            recordTimer.style.display = 'none';
+                // Réinitialisation du formulaire
+                weddingForm.reset();
+                clearPhoto();
+                currentAudioBase64 = null;
+                audioPreview.style.display = 'none';
+                voiceControls.style.display = 'none';
+                recordBtnText.textContent = "Commencer l'enregistrement";
+                recordTimer.style.display = 'none';
 
-            // Message demandé : SEULEMENT "Merci !"
-            alert("Merci ! ✨");
+                // Confirmation visuelle nette
+                successBanner.style.display = 'block';
+                alert("Merci ! ✨");
+                setTimeout(() => { successBanner.style.display = 'none'; }, 6000);
+
+            } catch (err) {
+                console.error(err);
+                alert("Erreur de stockage : le fichier photo ou audio est trop lourd pour le navigateur. Essayez sans photo ou avec une photo plus petite.");
+            }
         });
 
         function loadPublicMessages() {
@@ -826,13 +847,10 @@
             });
         }
 
-        /* ========================================================
-           5. ACCÈS SECRET POUR LES MARIÉS SEULEMENT
-           ======================================================== */
+        /* 6. ESPACE SECRET D'ADMINISTRATION */
         window.addEventListener("hashchange", checkSecretHash);
 
         function checkSecretHash() {
-            // Le lien secret utilise le hash #secret-maries
             if (window.location.hash === "#secret-maries") {
                 openAdmin();
             }
@@ -875,4 +893,82 @@
 
         function showAdminDashboard() {
             document.getElementById('adminLoginForm').style.display = 'none';
-            document.getElementById('adminDashboard').style
+            document.getElementById('adminDashboard').style.display = 'block';
+            renderAdminMessages();
+        }
+
+        function renderAdminMessages() {
+            const list = document.getElementById('adminMessagesList');
+            let memories = JSON.parse(localStorage.getItem('khadija_raouf_memories')) || [];
+
+            list.innerHTML = '';
+
+            if (memories.length === 0) {
+                list.innerHTML = `<p style="text-align:center; color: var(--text-muted);">Aucun message pour l'instant.</p>`;
+                return;
+            }
+
+            memories.forEach(msg => {
+                const card = document.createElement('div');
+                card.style.border = "1px solid var(--border-color)";
+                card.style.borderRadius = "10px";
+                card.style.padding = "18px";
+                card.style.background = msg.approved ? "#fcfdfc" : "#fffefb";
+
+                const badge = msg.approved 
+                    ? `<span class="badge-status badge-approved"><i class="fa-solid fa-check"></i> En ligne</span>`
+                    : `<span class="badge-status badge-pending"><i class="fa-solid fa-clock"></i> En attente</span>`;
+
+                let photoPreview = msg.photo ? `<div style="margin-top:10px;"><img src="${msg.photo}" style="max-height:100px; border-radius:6px;"></div>` : '';
+                let audioPreview = msg.audio ? `<div style="margin-top:10px;"><audio controls src="${msg.audio}" style="width:100%; height:35px;"></audio></div>` : '';
+
+                card.innerHTML = `
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px;">
+                        <h4 class="serif-font" style="font-size: 1.3rem;">${escapeHTML(msg.name)}</h4>
+                        ${badge}
+                    </div>
+                    <p style="font-size: 0.9rem; color: #555;">${escapeHTML(msg.message)}</p>
+                    ${photoPreview}
+                    ${audioPreview}
+                    <div class="admin-actions-btns">
+                        ${!msg.approved ? `<button class="btn-approve" onclick="approveMessage(${msg.id})"><i class="fa-solid fa-check"></i> Approuver</button>` : ''}
+                        <button class="btn-reject" onclick="deleteMessage(${msg.id})"><i class="fa-solid fa-trash"></i> Supprimer</button>
+                    </div>
+                `;
+
+                list.appendChild(card);
+            });
+        }
+
+        function approveMessage(id) {
+            let memories = JSON.parse(localStorage.getItem('khadija_raouf_memories')) || [];
+            memories = memories.map(m => m.id === id ? { ...m, approved: true } : m);
+            localStorage.setItem('khadija_raouf_memories', JSON.stringify(memories));
+            renderAdminMessages();
+            loadPublicMessages();
+        }
+
+        function deleteMessage(id) {
+            if (confirm("Supprimer définitivement ce message ?")) {
+                let memories = JSON.parse(localStorage.getItem('khadija_raouf_memories')) || [];
+                memories = memories.filter(m => m.id !== id);
+                localStorage.setItem('khadija_raouf_memories', JSON.stringify(memories));
+                renderAdminMessages();
+                loadPublicMessages();
+            }
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    "'": '&#39;',
+                    '"': '&quot;'
+                }[tag] || tag)
+            );
+        }
+    </script>
+</body>
+</html>
